@@ -1,8 +1,7 @@
 #!/bin/bash
 OUT=TiddlyWiki5/plugins/anicolao/tw5-firestore-sync/firestoreadaptor.js
-head -8 src/firestoreadaptor.ts > $OUT
 cat build/firestoreadaptor.js |
-	sed -re 's/_firestoreadaptor//' -e '/^var Ea;$/d' >> $OUT
+	sed -re 's/_firestoreadaptor//' -e '/^var Ea;$/d' > $OUT
 cd TiddlyWiki5
 node ./tiddlywiki.js editions/firestore --build index
 cd -
