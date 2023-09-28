@@ -8,15 +8,13 @@ A sync adaptor module for synchronising with the user's own firestore instance.
 \*/
 
 import { deleteTiddler, initialLoadComplete, loadTiddler, registerSyncCallback, storeTiddler } from "./firebase";
-// rome-ignore lint/suspicious/noExplicitAny: no types for tw yet
-declare var $tw: any;
-declare var exports: any;
+
 (function () {
 	function FirestoreAdaptor(options: { wiki: unknown; boot: unknown }) {
 		var self = this;
 		self.wiki = options.wiki;
 		self.boot = options.boot || $tw.boot;
-		self.logger = new $tw.utils.Logger("firestore", { colour: "red" });
+		self.logger = new $tw.utils.Logger("firestore");
 	}
 	FirestoreAdaptor.prototype.name = "firestore";
 	FirestoreAdaptor.prototype.supportsLazyLoading = false;

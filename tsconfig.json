@@ -5,6 +5,7 @@
     "lib": ["es2021", "dom"],
     "module": "es6",
     "target": "es5",
+    "types": ["node", "tw5-typed"],
     "allowJs": true,
     "moduleResolution": "node"
   }
