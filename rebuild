@@ -5,4 +5,5 @@ cat build/firestoreadaptor.js |
 cd TiddlyWiki5
 node ./tiddlywiki.js editions/firestore --build index
 cd -
-cp TiddlyWiki5/editions/firestore/output/index.html dist
+mkdir -p dist/tw
+cp TiddlyWiki5/editions/firestore/output/index.html dist/tw

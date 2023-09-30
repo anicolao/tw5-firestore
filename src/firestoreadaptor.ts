@@ -7,7 +7,14 @@ A sync adaptor module for synchronising with the user's own firestore instance.
 
 \*/
 
-import { deleteTiddler, initialLoadComplete, loadTiddler, registerSyncCallback, storeTiddler } from "./firebase";
+import {
+	deleteTiddler,
+	initialLoadComplete,
+	isConfiguration,
+	loadTiddler,
+	registerSyncCallback,
+	storeTiddler,
+} from "./firebase";
 
 (function () {
 	function FirestoreAdaptor(options: { wiki: unknown; boot: unknown }) {
@@ -34,7 +41,10 @@ import { deleteTiddler, initialLoadComplete, loadTiddler, registerSyncCallback, 
 	let registered = false;
 	FirestoreAdaptor.prototype.getUpdatedTiddlers = function (
 		_syncer: unknown,
-		callback: (arg0: null, arg1: { modifications: string[]; deletions: string[]; }) => void,
+		callback: (
+			arg0: null,
+			arg1: { modifications: string[]; deletions: string[] },
+		) => void,
 	) {
 		if (!registered) {
 			registered = true;
@@ -62,7 +72,10 @@ import { deleteTiddler, initialLoadComplete, loadTiddler, registerSyncCallback, 
 			`saveTiddler ${JSON.stringify(tiddler)} with ${JSON.stringify(options)}`,
 		);
 		// hack to avoid calling storeTiddler at build time
-		if (typeof window !== "undefined" && initialLoadComplete()) {
+		if (
+			typeof window !== "undefined" &&
+			(initialLoadComplete() || isConfiguration(data.title))
+		) {
 			storeTiddler(data.title, data);
 		}
 		callback(null, null);
