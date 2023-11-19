@@ -21,7 +21,7 @@ import {
 const firebaseConfigTiddler = "$:/FirebaseConfig";
 const location =
 	typeof window !== "undefined" ? window.location.href : "build-time";
-const firebaseConfigStorage = `${firebaseConfigTiddler}|${location}}`;
+const firebaseConfigStorage = `${firebaseConfigTiddler}|${location}`;
 // Your web app's Firebase configuration
 let firebaseConfig = undefined;
 
